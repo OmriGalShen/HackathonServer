@@ -13,7 +13,7 @@ class HTTPRequestHandler(server.SimpleHTTPRequestHandler):
         """Save a file following a HTTP PUT request"""
         filename = os.path.relpath('image.jpeg')
         # filename = os.path.basename('image.jpeg')
-        print(f"path:{filename}")
+        print(f"path:{os.listdir('/')}")
         # # Don't overwrite files
         # if os.path.exists(filename):
         #     self.send_response(409, 'Conflict')
