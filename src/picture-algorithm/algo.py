@@ -34,21 +34,28 @@ def find_best_match():
             max_index = index
     return max_index
 
-def price_and_model(picutre_string)
+
+last_index = repo.lastindex()
+
+
+def price_and_model(picutre_string):
     client_image = Image.open(picutre_string)  # This is the picture from the Client
     new_image = client_image.resize((500, 500))
     new_image.save('client_image.jpeg')
-    last_index = repo.lastindex()
     best_match = find_best_match()
-    l
+    price = repo.getprice(best_match)
+    model = repo.getmodel(best_match)
+    return model,price
+
 
 print(f"OpenCV Version: {cv2.__version__}")
+
 
 client_image = Image.open('yad2.jpeg')  # This is the picture from the Client
 new_image = client_image.resize((500, 500))
 new_image.save('client_image.jpeg')
-last_index = repo.lastindex()
-best_match = find_best_match()  # our best match - returning the "id" of the pic
+
+  # our best match - returning the "id" of the pic
 
 
 # cv2.imshow('img1', img1)
