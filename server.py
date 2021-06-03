@@ -32,7 +32,7 @@ class HTTPRequestHandler(server.SimpleHTTPRequestHandler):
 
 
 def run(server_class=server.HTTPServer, handler_class=HTTPRequestHandler):
-    server_address = ('', PORT)
+    server_address = ('', int(PORT))
     httpd = server_class(server_address, handler_class)
     httpd.serve_forever()
 
