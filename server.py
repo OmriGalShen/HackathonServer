@@ -1,5 +1,6 @@
 import os
 import http.server as server
+import sys
 
 PORT = os.environ['PORT']
 # PORT = 8000
@@ -31,13 +32,14 @@ class HTTPRequestHandler(server.SimpleHTTPRequestHandler):
 
 
 def run(server_class=server.HTTPServer, handler_class=HTTPRequestHandler):
-    server_address = ('', PORT)
+    server_address = ('', int(PORT))
     httpd = server_class(server_address, handler_class)
     httpd.serve_forever()
 
 
 if __name__ == '__main__':
-    # server.test(HandlerClass=HTTPRequestHandler)
+    print("running server")
+    sys.stdout.flush()
     run()
 
 
