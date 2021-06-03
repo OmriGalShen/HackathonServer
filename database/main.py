@@ -6,11 +6,12 @@ from database.Repository import *
 
 
 def main(id):
-    price = repo.getprice(2)
-    print(price)
+    price = repo.getprice(id)
+    print(price, repo.lastindex())  # {price of product, number of items in tables}
+    return price, repo.lastindex()
 
 
 if __name__ == "__main__":
     if len(sys.argv) != 1:
         raise ValueError("usage")
-    main(2)
+    main(3)
