@@ -40,8 +40,6 @@ new_image = client_image.resize((500, 500))
 new_image.save('client_image.jpeg')
 last_index = repo.lastindex() - 4
 
-classNames = []
-classFile = ''
 
 for i in range(last_index, 3):
     print(last_index)
