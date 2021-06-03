@@ -11,8 +11,9 @@ class HTTPRequestHandler(server.SimpleHTTPRequestHandler):
 
     def do_PUT(self):
         """Save a file following a HTTP PUT request"""
-        filename = os.path.basename('image.jpeg')
-        print(f"path:{os.path}")
+        filename = os.path.relpath('image.jpeg')
+        # filename = os.path.basename('image.jpeg')
+        print(f"path:{filename}")
         # # Don't overwrite files
         # if os.path.exists(filename):
         #     self.send_response(409, 'Conflict')
