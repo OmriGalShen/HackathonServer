@@ -10,8 +10,8 @@ import numpy as np
 from database.Repository import repo
 
 
-def find_best_match(curr_index):
-    database_image = Image.open('{}.jpeg'.format(curr_index))
+def find_num_of_matches(index):
+    database_image = Image.open('{}.jpeg'.format(index))
     new_database_image = database_image.resize((500, 500))
     new_database_image.save('database_image.jpeg')
     img1 = cv2.imread('database_image.jpeg', cv2.IMREAD_GRAYSCALE)
@@ -24,28 +24,36 @@ def find_best_match(curr_index):
     bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
     matches = bf.match(des1, des2)
     matches = sorted(matches, key=lambda x: x.distance)
-    print(len(matches))
-    matching_result = cv2.drawMatches(img1, kp1, img2, kp2, matches[:30], None)
+    return len(matches)
 
-    # cv2.imshow('img1', img1)
-    # cv2.imshow('img2', img2)
-    cv2.imshow('matching result', matching_result)
-    cv2.waitKey(3500)
 
+def find_best_match():
+    max_index = 1
+    for index in range(last_index):
+        if find_num_of_matches(index) > find_num_of_matches(last_index):
+            max_index = index
+    return max_index
+
+def price_and_model(picutre_string)
+    client_image = Image.open(picutre_string)  # This is the picture from the Client
+    new_image = client_image.resize((500, 500))
+    new_image.save('client_image.jpeg')
+    last_index = repo.lastindex()
+    best_match = find_best_match()
+    l
 
 print(f"OpenCV Version: {cv2.__version__}")
 
 client_image = Image.open('yad2.jpeg')  # This is the picture from the Client
 new_image = client_image.resize((500, 500))
 new_image.save('client_image.jpeg')
-last_index = repo.lastindex() - 4
+last_index = repo.lastindex()
+best_match = find_best_match()  # our best match - returning the "id" of the pic
 
 
-for i in range(last_index, 3):
-    print(last_index)
-    find_best_match(i)
-    last_index = last_index + 1
-
+# cv2.imshow('img1', img1)
+# cv2.imshow('img2', img2)
+# cv2.imshow('matching result', matching_result) # cv2.waitKey(3500)
 # ריהוט כלי בית, מוצרי חשמל, טלוויזיות, תכשיטים אומנות
 # image = Image.open('test1yad2.jpeg')
 # new_image = image.resize((400, 400))
