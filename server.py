@@ -10,7 +10,7 @@ class HTTPRequestHandler(server.SimpleHTTPRequestHandler):
 
     def do_PUT(self):
         """Save a file following a HTTP PUT request"""
-        filename = os.path.basename('image.jpeg')
+        filename = os.path.basename('src/http/image.jpeg')
 
         # # Don't overwrite files
         # if os.path.exists(filename):
