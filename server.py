@@ -1,5 +1,6 @@
 import os
 import http.server as server
+import sys
 
 PORT = os.environ['PORT']
 # PORT = 8000
@@ -38,6 +39,8 @@ def run(server_class=server.HTTPServer, handler_class=HTTPRequestHandler):
 
 if __name__ == '__main__':
     # server.test(HandlerClass=HTTPRequestHandler)
+    print("HELLLL!!!")
+    sys.stdout.flush()
     run()
 
 
