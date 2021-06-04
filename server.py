@@ -4,8 +4,8 @@ import sys
 
 import algo
 
-# PORT = os.environ['PORT']
-PORT = 8000
+PORT = os.environ['PORT']
+# PORT = 8000
 
 
 class HTTPRequestHandler(server.SimpleHTTPRequestHandler):
