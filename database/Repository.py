@@ -2,7 +2,6 @@ import sqlite3
 import atexit
 
 from database.DAO import _Electronics
-from database.DTO import *
 
 
 class _Repository:
@@ -35,6 +34,13 @@ class _Repository:
                             SELECT model FROM Objects WHERE id = ?""", [id])
         price = cursor.fetchone()[0]
         return price
+
+    def lastindex(self):  # return the last index
+        cursor = self._conn.cursor()
+        cursor.execute("""  
+                            SELECT COUNT(id) FROM Objects""")
+        last_index = cursor.fetchone()[0]
+        return last_index
 
 
 repo = _Repository()
