@@ -9,10 +9,12 @@ import numpy as np
 
 from database.Repository import repo
 
+print(f"OpenCV Version: {cv2.__version__}")
+
 
 def find_num_of_matches(index):
-    database_image = Image.open('{}.jpeg'.format(index))
-    new_database_image = database_image.resize((500, 500))
+    database_image = Image.open('../../database/images/{}.jpeg'.format(index))
+    new_database_image = database_image.resize((400, 400))
     new_database_image.save('database_image.jpeg')
     img1 = cv2.imread('database_image.jpeg', cv2.IMREAD_GRAYSCALE)
     img2 = cv2.imread('client_image.jpeg', cv2.IMREAD_GRAYSCALE)
@@ -24,38 +26,48 @@ def find_num_of_matches(index):
     bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
     matches = bf.match(des1, des2)
     matches = sorted(matches, key=lambda x: x.distance)
+    print(len(matches))
+    matching_result = cv2.drawMatches(img1, kp1, img2, kp2, matches[:30], None)
+    cv2.imshow('matching result', matching_result)
+    cv2.waitKey(2000)
+    cv2.destroyAllWindows()
+
     return len(matches)
 
 
 def find_best_match():
     max_index = 1
-    for index in range(last_index):
-        if find_num_of_matches(index) > find_num_of_matches(last_index):
+    max_matches = 0
+    for index in range(1, last_index + 1):
+        print("{} the index is " + format(index))
+        curr_matches = find_num_of_matches(index)
+        if curr_matches > max_matches:
             max_index = index
+            max_matches = curr_matches
     return max_index
 
 
 last_index = repo.lastindex()
 
 
-def price_and_model(picutre_string):
-    client_image = Image.open(picutre_string)  # This is the picture from the Client
-    new_image = client_image.resize((500, 500))
+def price_and_model():
+    picture_from_app = '5$.jpg'
+    client_image = Image.open(picture_from_app)  # This is the picture from the Client
+    new_image = client_image.resize((400, 400))
     new_image.save('client_image.jpeg')
     best_match = find_best_match()
     price = repo.getprice(best_match)
     model = repo.getmodel(best_match)
-    return model,price
+    return f'{model},{model},{price}'
 
 
-print(f"OpenCV Version: {cv2.__version__}")
+print(price_and_model())
+#
+# client_image = Image.open('yad2.jpeg')  # This is the picture from the Client
+# new_image = client_image.resize((500, 500))
+# new_image.save('client_image.jpeg')
 
-
-client_image = Image.open('yad2.jpeg')  # This is the picture from the Client
-new_image = client_image.resize((500, 500))
-new_image.save('client_image.jpeg')
-
-  # our best match - returning the "id" of the pic
+# our best match - returning the "id" of the pic
 
 
 # cv2.imshow('img1', img1)
