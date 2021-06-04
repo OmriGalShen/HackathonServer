@@ -17,7 +17,7 @@ from database.Repository import repo
 
 def find_num_of_matches(index):
     print("path:"+os.path.relpath(__file__))
-    database_image = Image.open('/database/images/{}.jpeg'.format(index))
+    database_image = Image.open('database/images/{}.jpeg'.format(index))
     # database_image = Image.open('database/images/{}.jpeg'.format(index))
     new_database_image = database_image.resize((400, 400))
     new_database_image.save('database_image.jpeg')
