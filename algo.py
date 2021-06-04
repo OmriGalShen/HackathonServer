@@ -33,9 +33,9 @@ def find_num_of_matches(index):
     matches = sorted(matches, key=lambda x: x.distance)
     print(len(matches))
     matching_result = cv2.drawMatches(img1, kp1, img2, kp2, matches[:30], None)
-    cv2.imshow('matching result', matching_result)
-    cv2.waitKey(2000)
-    cv2.destroyAllWindows()
+    # cv2.imshow('matching result', matching_result)
+    # cv2.waitKey(2000)
+    # cv2.destroyAllWindows()
 
     return len(matches)
 
