@@ -56,7 +56,7 @@ last_index = repo.lastindex()
 
 
 def price_and_model():
-    picture_from_app = 'image.jpeg'
+    picture_from_app = 'image.jpg'
     client_image = Image.open(picture_from_app)  # This is the picture from the Client
     new_image = client_image.resize((400, 400))
     new_image.save('client_image.jpeg')
