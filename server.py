@@ -13,7 +13,7 @@ class HTTPRequestHandler(server.SimpleHTTPRequestHandler):
 
     def do_PUT(self):
         """Save a file following a HTTP PUT request"""
-        filename = os.path.relpath('/app/src/image.jpeg')
+        filename = os.path.relpath('/app/image.jpeg')
         # filename = os.path.relpath('image.jpeg')
         # filename = os.path.basename('image.jpeg')
         # print(f"path:{os.listdir('/app')}")
@@ -28,7 +28,7 @@ class HTTPRequestHandler(server.SimpleHTTPRequestHandler):
         file_length = int(self.headers['Content-Length'])
         with open(filename, 'wb') as output_file:
             output_file.write(self.rfile.read(file_length))
-        # print("BOOOM!!!")
+        print("BOOOM!!!")
         self.send_response(201, 'Created')
         self.end_headers()
         # reply_body = 'Saved "%s"\n' % filename
