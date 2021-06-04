@@ -25,9 +25,9 @@ class HTTPRequestHandler(server.SimpleHTTPRequestHandler):
         #     self.wfile.write(reply_body.encode('utf-8'))
         #     return
 
-        file_length = int(self.headers['Content-Length'])
-        with open(filename, 'wb') as output_file:
-            output_file.write((self.rfile.read(int(self.headers['content-length']))).decode('utf-8'))
+        # file_length = int(self.headers['Content-Length'])
+        # with open(filename, 'wb') as output_file:
+        #     output_file.write(self.rfile.read(file_length))
         print("BOOOM!!!")
         self.send_response(201, 'Created')
         self.end_headers()
