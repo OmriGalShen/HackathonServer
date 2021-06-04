@@ -2,6 +2,8 @@
 
 # Press ⌃R to execute it or replace it with your code.
 # Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+import os
+
 from PIL import Image
 
 import cv2
@@ -14,7 +16,8 @@ from database.Repository import repo
 
 
 def find_num_of_matches(index):
-    database_image = Image.open('../../database/images/{}.jpeg'.format(index))
+    database_image = Image.open('/database/images/{}.jpeg'.format(index))
+    print("path:"+os.path.relpath(__file__))
     # database_image = Image.open('database/images/{}.jpeg'.format(index))
     new_database_image = database_image.resize((400, 400))
     new_database_image.save('database_image.jpeg')
