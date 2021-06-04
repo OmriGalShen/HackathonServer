@@ -1,9 +1,11 @@
-import os
 import http.server as server
+import os
 import sys
 
-PORT = os.environ['PORT']
-# PORT = 8000
+import algo
+
+# PORT = os.environ['PORT']
+PORT = 8000
 
 
 class HTTPRequestHandler(server.SimpleHTTPRequestHandler):
@@ -12,6 +14,7 @@ class HTTPRequestHandler(server.SimpleHTTPRequestHandler):
     def do_PUT(self):
         """Save a file following a HTTP PUT request"""
         filename = os.path.relpath('/app/src/image.jpeg')
+        # filename = os.path.relpath('image.jpeg')
         # filename = os.path.basename('image.jpeg')
         # print(f"path:{os.listdir('/app')}")
         # # Don't overwrite files
@@ -30,7 +33,8 @@ class HTTPRequestHandler(server.SimpleHTTPRequestHandler):
         self.end_headers()
         # reply_body = 'Saved "%s"\n' % filename
         # reply_body = 'price:2000'
-        reply_body = f"path:{os.listdir('/app/src')}"
+        # reply_body = f"path:{os.listdir('/app/src')}"
+        reply_body = algo.price_and_model()
         self.wfile.write(reply_body.encode('utf-8'))
 
 

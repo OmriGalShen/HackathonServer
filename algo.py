@@ -6,14 +6,16 @@ from PIL import Image
 
 import cv2
 import numpy as np
+import sys
 
 from database.Repository import repo
 
-print(f"OpenCV Version: {cv2.__version__}")
+# print(f"OpenCV Version: {cv2.__version__}")
 
 
 def find_num_of_matches(index):
     database_image = Image.open('../../database/images/{}.jpeg'.format(index))
+    # database_image = Image.open('database/images/{}.jpeg'.format(index))
     new_database_image = database_image.resize((400, 400))
     new_database_image.save('database_image.jpeg')
     img1 = cv2.imread('database_image.jpeg', cv2.IMREAD_GRAYSCALE)
@@ -51,7 +53,7 @@ last_index = repo.lastindex()
 
 
 def price_and_model():
-    picture_from_app = '5$.jpg'
+    picture_from_app = 'image.jpeg'
     client_image = Image.open(picture_from_app)  # This is the picture from the Client
     new_image = client_image.resize((400, 400))
     new_image.save('client_image.jpeg')
@@ -61,7 +63,7 @@ def price_and_model():
     return f'{model},{model},{price}'
 
 
-print(price_and_model())
+# print(price_and_model())
 #
 # client_image = Image.open('yad2.jpeg')  # This is the picture from the Client
 # new_image = client_image.resize((500, 500))
